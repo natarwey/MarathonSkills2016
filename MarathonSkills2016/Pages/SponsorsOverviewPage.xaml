@@ -1,0 +1,69 @@
+﻿<Page x:Class="MarathonSkills2016.Pages.SponsorsOverviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkills2016.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="SponsorsOverviewPage">
+
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка -->
+        <Border Grid.Row="0" Background="Green" Padding="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Button Content="Назад" Style="{StaticResource RoundedButtonStyle}" 
+                        Background="Green" Click="GoBackButton_Click" Width="70" Height="30" Margin="0,0,30,0"/>
+                <TextBlock Text="MARATHON SKILLS 2016" FontSize="28" 
+                           FontWeight="Bold" Foreground="White"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Фильтры и сводная информация -->
+        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="0,0,0,1" Padding="10">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Отсортировать:" FontWeight="Bold" Margin="0,0,10,0"/>
+                    <ComboBox x:Name="SortComboBox" Width="200" SelectionChanged="SortComboBox_SelectionChanged">
+                        <ComboBoxItem Content="Итоговая сумма" Tag="TotalAmount" IsSelected="True"/>
+                        <ComboBoxItem Content="Название организации" Tag="CharityName"/>
+                        <ComboBoxItem Content="Количество спонсоров" Tag="SponsorsCount"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+                    <TextBlock Text="Благотворительные организации:" FontWeight="Bold" Margin="0,0,5,0"/>
+                    <TextBlock x:Name="CharitiesCountText" Text="0"/>
+
+                    <TextBlock Text="Всего спонсорских взносов:" FontWeight="Bold" Margin="20,0,5,0"/>
+                    <TextBlock x:Name="TotalAmountText" Text="$0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Таблица спонсоров -->
+        <DataGrid x:Name="SponsorsGrid" Grid.Row="2" Margin="10" AutoGenerateColumns="False"
+                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+                  HeadersVisibility="Column" GridLinesVisibility="All"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Логотип" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding LogoPath}" Width="50" Height="50" Stretch="Uniform"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding CharityName}" Width="*"/>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding TotalAmount, StringFormat=C}" Width="Auto"/>
+                <DataGridTextColumn Header="Количество спонсоров" Binding="{Binding SponsorsCount}" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

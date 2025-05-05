@@ -1,0 +1,123 @@
+﻿<Page x:Class="MarathonSkills2016.Pages.RunnersManagementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkills2016.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="RunnersManagementPage">
+
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка с названием и кнопками -->
+        <Grid Background="Green" Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+                <Button Content="Назад" Style="{StaticResource RoundedButtonStyle}" 
+                        Background="Green" Click="GoBackButton_Click" Width="70" Height="30" Margin="0,0,30,0"/>
+                <TextBlock Text="MARATHON SKILLS 2016" FontSize="28" 
+                           FontWeight="Bold" Foreground="White"/>
+                <Button Content="Logout" Style="{StaticResource RoundedButtonStyle}" 
+                        Background="Green" Click="LogoutButton_Click" Width="70" Height="30" Margin="330,0,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Фильтры и инструменты -->
+        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="0,0,0,1" Padding="10" Margin="20,10,20,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Фильтр по статусу -->
+                <Label Content="Статус:" Grid.Column="0" Grid.Row="0" Margin="0,0,5,0"/>
+                <ComboBox x:Name="StatusComboBox" Grid.Column="1" Grid.Row="0" Margin="0,0,10,5" Width="200"
+                          SelectionChanged="Filters_SelectionChanged">
+                    <ComboBoxItem Content="Все" Tag="All" IsSelected="True"/>
+                    <ComboBoxItem Content="Registered" Tag="Registered"/>
+                    <ComboBoxItem Content="Payment Confirmed" Tag="Payment Confirmed"/>
+                    <ComboBoxItem Content="Race Kit Sent" Tag="Race Kit Sent"/>
+                    <ComboBoxItem Content="Race Attended" Tag="Race Attended"/>
+                </ComboBox>
+
+                <!-- Фильтр по дистанции -->
+                <Label Content="Дистанция:" Grid.Column="0" Grid.Row="1" Margin="0,5,5,0"/>
+                <ComboBox x:Name="DistanceComboBox" Grid.Column="1" Grid.Row="1" Margin="0,5,10,0" Width="200"
+                          SelectionChanged="Filters_SelectionChanged">
+                    <ComboBoxItem Content="Все" Tag="All" IsSelected="True"/>
+                    <ComboBoxItem Content="42km полный марафон" Tag="Full"/>
+                    <ComboBoxItem Content="21km полумарафон" Tag="Half"/>
+                    <ComboBoxItem Content="5km мини-марафон" Tag="Mini"/>
+                </ComboBox>
+
+                <!-- Кнопки экспорта -->
+                <StackPanel Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Orientation="Vertical" HorizontalAlignment="Right">
+                    <Button Content="Детальная информация (CSV)" Style="{StaticResource RoundedButtonStyle}" 
+                            Background="Green" Click="ExportDetailsButton_Click" Width="200" Height="30" Margin="0,0,0,5"/>
+                    <Button Content="E-mail список" Style="{StaticResource RoundedButtonStyle}" 
+                            Background="Green" Click="ExportEmailsButton_Click" Width="200" Height="30"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Сортировка и результаты -->
+        <Grid Grid.Row="2" Margin="20,10,20,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Панель сортировки -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <Label Content="Сортировать:" Margin="0,0,5,0"/>
+                <ComboBox x:Name="SortComboBox" Width="150" SelectionChanged="SortComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Имя" Tag="FirstName"/>
+                    <ComboBoxItem Content="Фамилия" Tag="LastName"/>
+                    <ComboBoxItem Content="Email" Tag="Email"/>
+                    <ComboBoxItem Content="Статус" Tag="Status"/>
+                </ComboBox>
+                <Button Content="Обновить" Style="{StaticResource RoundedButtonStyle}" 
+                        Background="Green" Click="RefreshButton_Click" Width="100" Height="30" Margin="10,0,0,0"/>
+            </StackPanel>
+
+            <!-- Общее количество -->
+            <TextBlock x:Name="TotalRunnersText" Grid.Row="0" Text="Total runners: 0" HorizontalAlignment="Right"/>
+
+            <!-- Таблица бегунов -->
+            <DataGrid x:Name="RunnersGrid" Grid.Row="1" AutoGenerateColumns="False" 
+                      CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+                      HeadersVisibility="Column" BorderThickness="1" GridLinesVisibility="All"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*"/>
+                    <DataGridTemplateColumn Header="Действия" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Редактировать" Style="{StaticResource RoundedButtonStyle}" 
+                                        Background="Green" Click="EditRunner_Click" Tag="{Binding RunnerId}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Сообщение об отсутствии результатов -->
+            <TextBlock x:Name="NoResultsText" Grid.Row="1" Text="Нет бегунов, соответствующих критериям поиска." 
+                       Visibility="Collapsed" TextAlignment="Center" VerticalAlignment="Center" FontStyle="Italic"/>
+        </Grid>
+    </Grid>
+</Page>

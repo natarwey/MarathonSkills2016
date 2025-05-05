@@ -1,0 +1,260 @@
+﻿<Page x:Class="MarathonSkills2016.Pages.RunnerSponsor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkills2016.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RunnerSponsor">
+
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Green">
+            <StackPanel
+                Margin="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <Button
+                    Width="70"
+                    Height="30"
+                    Margin="0,0,30,0"
+                    Background="Green"
+                    Click="GoBackButton_Click"
+                    Content="Назад"
+                    FontFamily="Open Sans Light"
+                    Style="{StaticResource RoundedButtonStyle}" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontFamily="Open Sans Semibold "
+                    FontSize="28"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="MARATHON SKILLS 2025" />
+
+            </StackPanel>
+        </Grid>
+        <StackPanel
+            Grid.RowSpan="2"
+            Width="708"
+            Height="98"
+            Margin="0,50,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top">
+            <Label
+                Height="36"
+                HorizontalAlignment="Center"
+                Content="Спонсор бегуна"
+                FontFamily="Open Sans Light"
+                FontSize="20" />
+            <TextBlock
+                Width="474"
+                Height="56"
+                HorizontalAlignment="Center"
+                FontFamily="Open Sans Light"
+                FontSize="14"
+                Text="Пожалуйста выберите бегуна, которого вы хотели бы спонсировать и сумму, которую вы хотели бы спонсировать. Спасибо за вашу поддержку бегунов и их благотворительных учреждений."
+                TextAlignment="Center"
+                TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            Width="650"
+            Margin="0,90,0,13"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+
+            <StackPanel Width="310" HorizontalAlignment="Left">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontSize="16"
+                    Text="Информация о спонсоре" />
+                <StackPanel Margin="0,7,0,0" Orientation="Horizontal">
+                    <Label Margin="27,0,0,0" Content="Ваше имя:" />
+                    <TextBox
+                        x:Name="SponsorName"
+                        Width="200"
+                        FontSize="16"
+                        Foreground="Green"
+                        GotFocus="SponsorName_GotFocus"
+                        LostFocus="SponsorName_LostFocus"
+                        Text="Ваше имя" />
+                </StackPanel>
+                <StackPanel Margin="0,7,0,0" Orientation="Horizontal">
+                    <Label Margin="50,0,0,0" Content="Бегун:" />
+                    <ComboBox
+                        x:Name="CmbxRunners"
+                        Width="200"
+                        FontSize="14"
+                        SelectionChanged="CmbxRunners_SelectionChanged">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="0,0,5,0"
+                                        FontSize="12"
+                                        Text="{Binding Runner.User.FirstName}" />
+                                    <TextBlock
+                                        Margin="0,0,5,0"
+                                        FontSize="12"
+                                        Text="{Binding Runner.User.LastName}" />
+                                    <TextBlock
+                                        Margin="0,0,5,0"
+                                        FontSize="12"
+                                        Text="{Binding RegistrationId, StringFormat='- {0}'}" />
+                                    <TextBlock FontSize="12" Text="{Binding Runner.Country.CountryName, StringFormat='(0)'}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Margin="0,7,0,0" Orientation="Horizontal">
+                    <Label Margin="49,0,0,0" Content="Карта:" />
+                    <TextBox
+                        x:Name="CardHolderName"
+                        Width="200"
+                        FontSize="16"
+                        Foreground="Green"
+                        GotFocus="TextBox_GotFocus"
+                        LostFocus="TextBox_LostFocus"
+                        Text="Владелец карты" />
+                </StackPanel>
+                <StackPanel Margin="0,7,0,0" Orientation="Horizontal">
+                    <Label Content="Номер карты#:" />
+                    <TextBox
+                        x:Name="CardNumTxt"
+                        Width="200"
+                        FontSize="12"
+                        Foreground="Green"
+                        GotFocus="TextBox_GotFocus_1"
+                        LostFocus="TextBox_LostFocus_1"
+                        Text="1234 1234 1234 1234" />
+                </StackPanel>
+                <StackPanel Margin="0,7,0,0" Orientation="Horizontal">
+                    <Label Margin="0,0,0,0" Content="Срок действия:" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox
+                            x:Name="CardMonth"
+                            Width="25"
+                            Foreground="Green"
+                            GotFocus="TextBox_GotFocus_2"
+                            LostFocus="TextBox_LostFocus_2"
+                            Text="01" />
+                        <TextBox
+                            x:Name="CardYear"
+                            Width="33"
+                            Margin="10,0,0,0"
+                            Foreground="Green"
+                            GotFocus="TextBox_GotFocus_3"
+                            LostFocus="TextBox_LostFocus_3"
+                            Text="2017" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="0,7,0,0" Orientation="Horizontal">
+                    <Label Margin="58,0,0,0" Content="CVC:" />
+                    <TextBox
+                        x:Name="CVCTxt"
+                        Width="27"
+                        FontSize="12"
+                        Foreground="Green"
+                        GotFocus="TextBox_GotFocus_4"
+                        LostFocus="TextBox_LostFocus_4"
+                        Text="123" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel
+                Width="280"
+                Margin="90,0,0,0"
+                Orientation="Vertical">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontFamily="Open Sans Light"
+                    FontSize="16"
+                    Text="Благотворительность" />
+                <StackPanel
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        x:Name="FundNameLabel"
+                        FontSize="14"
+                        Text="Фонд кошелёк" />
+                    <Button
+                        x:Name="Fond"
+                        Width="19"
+                        Margin="10,0,0,0"
+                        Background="Green"
+                        Click="Fond_Click"
+                        Content="i"
+                        Style="{StaticResource RoundedButtonStyle}" />
+                </StackPanel>
+                <TextBlock
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    FontFamily="Open Sans Light"
+                    FontSize="16"
+                    Text="Сумма пожертвования" />
+                <Label
+                    Name="LabelMoney"
+                    HorizontalAlignment="Center"
+                    Content="$50"
+                    FontSize="30" />
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button
+                        x:Name="BtnMinus"
+                        Width="32"
+                        Background="Green"
+                        Click="BtnMinus_Click"
+                        Content="-"
+                        FontSize="20"
+                        Style="{StaticResource RoundedButtonStyle}" />
+                    <TextBox
+                        x:Name="MoneyTextBox"
+                        Width="59"
+                        Margin="10,0,0,0"
+                        Text="50"
+                        TextAlignment="Center"
+                        TextChanged="MoneyTextBox_TextChanged" />
+                    <Button
+                        x:Name="BtnPlus"
+                        Width="32"
+                        Margin="10,0,0,0"
+                        Background="Green"
+                        Click="BtnPlus_Click"
+                        Content="+"
+                        FontSize="20"
+                        Style="{StaticResource RoundedButtonStyle}" />
+                </StackPanel>
+                <StackPanel
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        x:Name="BtnPay"
+                        Width="92"
+                        Height="32"
+                        Background="Green"
+                        Click="BtnPay_Click"
+                        Content="Заплатить"
+                        Style="{StaticResource RoundedButtonStyle}" />
+                    <Button
+                        x:Name="BtnCancel"
+                        Width="92"
+                        Height="32"
+                        Margin="20,0,0,0"
+                        Background="Green"
+                        Click="BtnCancel_Click"
+                        Content="Отмена"
+                        Style="{StaticResource RoundedButtonStyle}" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Page>
+

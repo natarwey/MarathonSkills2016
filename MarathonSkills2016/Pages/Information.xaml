@@ -1,0 +1,176 @@
+﻿<Page x:Class="MarathonSkills2016.Pages.Information"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkills2016.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Information">
+    <Page.Resources>
+        <!--  Стиль для закругленных кнопок  -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="350" />
+            <Setter Property="Height" Value="85" />
+            <Setter Property="Margin" Value="0,0,0,30" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="Green" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="DarkGray" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="DarkGray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+
+        <!--  Верхняя панель с заголовком  -->
+        <Border
+            Grid.Row="0"
+            Margin="0,0,0,37"
+            Background="Green">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Кнопка Назад  -->
+                <Button
+                    Grid.Column="0"
+                    Width="120"
+                    Height="40"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    Background="Green"
+                    Click="GoBackButton_Click"
+                    Content="Назад"
+                    FontWeight="Bold"
+                    Foreground="Black" />
+
+                <!--  Заголовок  -->
+                <TextBlock
+                    Grid.Column="1"
+                    Margin="115,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="24"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="MARATHON SKILLS 2025" />
+
+            </Grid>
+        </Border>
+
+
+        <!--  Основное содержимое  -->
+        <StackPanel Grid.Row="1" Margin="30,0,10,0">
+            <!--  Заголовок страницы  -->
+            <TextBlock
+                Margin="0,0,0,30"
+                HorizontalAlignment="Center"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="#241D70"
+                Text="Подробная информация" />
+
+            <!--  Две колонки с кнопками  -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Левая колонка  -->
+                <StackPanel Grid.Column="0">
+                    <Button Click="MarathonSkillsButton_Click" Style="{StaticResource RoundedButtonStyle}">
+                        <TextBlock
+                            Padding="10"
+                            FontSize="26"
+                            Text="Marathon Skills 2025"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+                    </Button>
+
+                    <Button Click="LastResultsButton_Click" Style="{StaticResource RoundedButtonStyle}">
+                        <TextBlock
+                            Padding="10"
+                            FontSize="26"
+                            Text="Предыдущие результаты"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+                    </Button>
+
+                    <Button Click="BMIButton_Click" Style="{StaticResource RoundedButtonStyle}">
+                        <TextBlock
+                            Padding="15"
+                            FontSize="26"
+                            Text="BMI калькулятор"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+                    </Button>
+                </StackPanel>
+
+                <!--  Правая колонка  -->
+                <StackPanel Grid.Column="2">
+                    <Button Click="HowLongButton_Click" Style="{StaticResource RoundedButtonStyle}">
+                        <TextBlock
+                            Padding="10"
+                            FontSize="26"
+                            Text="Насколько долгий марафон"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+                    </Button>
+
+                    <Button Click="SpisokBlagotvorOrg_Click" Style="{StaticResource RoundedButtonStyle}">
+                        <TextBlock
+                            Padding="10"
+                            FontSize="26"
+                            Text="Список благотворительных организаций"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+                    </Button>
+
+                    <Button Click="BMRButton_Click" Style="{StaticResource RoundedButtonStyle}">
+                        <TextBlock
+                            Padding="10"
+                            FontSize="26"
+                            Text="BMR калькулятор"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</Page>
+

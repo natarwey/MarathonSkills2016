@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ee7b3abb1f7f4d31a0b67190b2b8ba00" Name="Diagram1">
+        <EntityTypeShape EntityType="DoneModel.BMI" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Charity" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Country" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Event" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.EventType" Width="1.5" PointX="3" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Gender" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.HowLong" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.InventoryItem" Width="1.5" PointX="3" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.KitItem" Width="1.5" PointX="5.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Marathon" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Position" Width="1.5" PointX="9.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.RaceKitOption" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Registration" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.RegistrationEvent" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.RegistrationStatus" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Role" Width="1.5" PointX="1.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Runner" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Sponsorship" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Staff" Width="1.5" PointX="12" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Timesheet" Width="1.5" PointX="14.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.User" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoneModel.Volunteer" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <AssociationConnector Association="DoneModel.FK__Registrat__Chari__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Marathon__Countr__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Runner__CountryC__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Volunteer__Count__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Event__EventType__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Event__MarathonI__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Registrat__Event__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Runner__Gender__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Volunteer__Gende__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__KitItem__Invento__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__KitItem__RaceKit__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK_Staff_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Registrat__RaceK__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Registrat__Regis__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Registrat__Regis__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Registrat__Runne__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Sponsorsh__Regis__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__User__RoleId__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK__Runner__Email__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="DoneModel.FK_Timesheet_Staff" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

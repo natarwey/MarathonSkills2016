@@ -1,0 +1,80 @@
+﻿<Page x:Class="MarathonSkills2016.Pages.ResultatBegunaMarafon"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkills2016.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ResultatBegunaMarafon">
+
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка с названием и кнопками -->
+        <Grid Background="Green" Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+                <Button Content="Назад" Style="{StaticResource RoundedButtonStyle}" 
+                        Background="Green" Click="GoBackButton_Click" Width="70" Height="30" Margin="0,0,30,0"/>
+                <TextBlock Text="MARATHON SKILLS 2016" FontSize="28" 
+                           FontWeight="Bold" Foreground="White"/>
+                <Button Content="Logout" Style="{StaticResource RoundedButtonStyle}" 
+                        Background="Green" Click="LogoutButton_Click" Width="70" Height="30" Margin="330,0,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Основное содержимое -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="40,20,40,20">
+                <!-- Заголовок -->
+                <Label Content="Мои результаты" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
+
+                <!-- Описание -->
+                <TextBlock TextWrapping="Wrap" Margin="0,10,0,20" TextAlignment="Center">
+                    Это - список всех ваших прошлых результатов гонки для Marathon Skills.
+                    Общее место сравнивает всех бегунов.
+                    Место по категории сравнивает бегунов одного пола и возрастной категории.
+                </TextBlock>
+
+                <!-- Информация о бегуне -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                    <TextBlock Text="Пол:" FontWeight="Bold" Margin="0,0,5,0"/>
+                    <TextBlock x:Name="GenderText"/>
+                    <TextBlock Text=", " Margin="5,0,5,0"/>
+                    <TextBlock Text="Возрастная категория:" FontWeight="Bold" Margin="0,0,5,0"/>
+                    <TextBlock x:Name="AgeCategoryText"/>
+                </StackPanel>
+
+                <!-- Результаты или сообщение об отсутствии результатов -->
+                <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Padding="10">
+                    <StackPanel>
+                        <TextBlock x:Name="NoResultsText" Text="У вас пока нет результатов участия в марафонах." 
+                                   Visibility="Collapsed" TextAlignment="Center" FontStyle="Italic" Margin="0,20,0,20"/>
+
+                        <!-- Таблица результатов -->
+                        <DataGrid x:Name="ResultsGrid" AutoGenerateColumns="False" CanUserAddRows="False" 
+                                  CanUserDeleteRows="False" IsReadOnly="True" HeadersVisibility="Column" 
+                                  BorderThickness="0" GridLinesVisibility="None" Margin="0,10,0,20">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Марафон" Binding="{Binding MarathonName}" Width="*"/>
+                                <DataGridTextColumn Header="Событие" Binding="{Binding EventName}" Width="*"/>
+                                <DataGridTextColumn Header="Время" Binding="{Binding FormattedTime}" Width="*"/>
+                                <DataGridTextColumn Header="Общее место" Binding="{Binding OverallPlace}" Width="*"/>
+                                <DataGridTextColumn Header="Место по категории" Binding="{Binding CategoryPlace}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Кнопка "Показать все результаты" -->
+                <Button Content="Показать все результаты" Style="{StaticResource RoundedButtonStyle}" 
+                        Background="Green" Click="ShowAllResultsButton_Click" 
+                        Width="200" Height="35" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

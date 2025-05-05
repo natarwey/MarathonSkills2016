@@ -1,0 +1,143 @@
+﻿<Page x:Class="MarathonSkills2016.Pages.MarathonInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkills2016.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1500" d:DesignWidth="800"
+      Background="LightGray"
+      Title="MarathonInfoPage">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="80"/>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="60"/>
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="400"/>
+			<!-- Левая колонка для изображений -->
+			<ColumnDefinition Width="*"/>
+			<!-- Правая колонка для информации -->
+		</Grid.ColumnDefinitions>
+
+		<!-- Верхняя панель с заголовком -->
+		<Border Grid.Row="0" Background="Green" Grid.ColumnSpan="2">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+
+				<Button Grid.Column="0"
+                        Width="120"
+                        Height="40"
+                        Margin="20,0,0,0"
+                        VerticalAlignment="Center"
+                        Background="Green"
+                        Click="GoBackButton_Click"
+                        Content="Назад"
+                        FontWeight="Bold"
+                        Foreground="Black"/>
+
+				<TextBlock Grid.Column="1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           Text="MARATHON SKILLS 2016"/>
+			</Grid>
+		</Border>
+
+		<!-- Подзаголовок -->
+        <Border Grid.Row="1" Background="Green" Grid.ColumnSpan="2">
+			<TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       Foreground="White"
+                       Text="Информация о Marathon Skills 2016"/>
+		</Border>
+
+		<!-- Левая колонка с фотографиями и картой -->
+		<ScrollViewer Grid.Row="2" Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="10">
+			<StackPanel>
+				<!-- Карта марафона -->
+				<TextBlock Text="Карта марафона" FontWeight="Bold" FontSize="16" Margin="0,0,0,5"/>
+				<Button Click="MapButton_Click" Background="Transparent" BorderThickness="0">
+					<Image Source="/Info/marathon-skills-2016-marathon-map.jpg" 
+                           Stretch="Uniform" 
+                           Width="280" 
+                           Margin="0,0,0,20"/>
+				</Button>
+				<TextBlock Text="(Нажмите чтобы открыть интерактивную карту)" 
+                           FontStyle="Italic" 
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
+
+				<!-- Фотографии -->
+				<TextBlock Text="Фотографии с прошлых марафонов:" 
+                           FontWeight="Bold" 
+                           FontSize="16" 
+                           Margin="0,0,0,10"/>
+
+				<Image Source="/Info/Photo/banco-banespa.jpg" 
+                       Width="280" 
+                       Margin="0,0,0,10"/>
+
+				<Image Source="/Info/Photo/ibirapuera-park-lake.jpg" 
+                       Width="280" 
+                       Margin="0,0,0,10"/>
+
+				<Image Source="/Info/Photo/marathon-image.jpg" 
+                       Width="280" 
+                       Margin="0,0,0,10"/>
+			</StackPanel>
+		</ScrollViewer>
+
+		<!-- Правая колонка с информацией о марафоне -->
+		<ScrollViewer Grid.Row="2" Grid.Column="1" VerticalScrollBarVisibility="Auto" Margin="10">
+			<StackPanel>
+				<TextBlock TextWrapping="Wrap" FontSize="16" Margin="0,0,0,20">
+                    <Run Text="Marathon Skills - фестиваль бега, проводимый каждый год в разных частях мира. Может быть три зачета: Полный Марафон, Полумарафон и забег для новичков - таким образом фестиваль подходит всем."/>
+                    <LineBreak/><LineBreak/>
+                    <Run Text="В прошлых годах марафон был проведен в Осаке, Япония (2014); Лейпциг, Германия (2013); Ханой, Вьетнам (2012) и Йорк, Англия (2011)."/>
+                    <LineBreak/><LineBreak/>
+                    <Run Text="В этом году, Marathon Skills очень зрелищно, пройдет в Сан-Пауло, Бразилия, он должен быть самым большим фестивалем бега. Это финансовый центр Бразилии и самый большой город в Южной Америке. Сан-Пауло увидят тысячи бегунов, которые будут бежать мимо небоскребов, зеленые парки и великолепная архитектура."/>
+                    <LineBreak/><LineBreak/>
+                    <Run Text="Этот фестиваль привлек рекордное количество бегунов со всего мира. Особое внимание будет обращено на участников из Кении и Ямайки, поскольку мы надеемся увидеть победителя 2014 года. (Эфиоп закончил гонку за 45 минут 4 секунды)."/>
+                    <LineBreak/><LineBreak/>
+                    <Run Text="Атмосфера праздника обещает развлечения для всех зрителей."/>
+				</TextBlock>
+
+				<TextBlock Text="События:" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+				<StackPanel Margin="20,0,0,20">
+					<TextBlock Text="- Программа 'Самба' Полный Марафон начнется в Руа-Ду-Американо в 6 утра."/>
+					<TextBlock Text="- Программа 'Джонго' Полумарафон начнет в 7 утра. Бегуны будут стартовать от недалеко от пересечения улицы Руа Ciniciata и Авенида."/>
+					<TextBlock Text="- Программа 'Капоэйра' в 5 км забег для новичков начнется в 15 часов. Наши новички побегут от Мемориала Унинове."/>
+				</StackPanel>
+
+				<TextBlock Text="Дополнительные сведения:" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+				<TextBlock Text="Здесь может быть дополнительная информация о марафоне, спонсорах, волонтерах и других деталях события." 
+                           TextWrapping="Wrap" FontSize="16" Margin="0,0,0,20"/>
+
+				<TextBlock Text="Спасибо всем волонтерам, которые будут помогать нам проводить марафон!" 
+                           FontSize="16" Margin="0,20,0,0" TextAlignment="Center" FontStyle="Italic"/>
+			</StackPanel>
+		</ScrollViewer>
+
+		<!-- Футер -->
+		<Border Grid.Row="3" Background="Green" Grid.ColumnSpan="2">
+			<TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="Black"
+                       Text="До марафона осталось: ..."/>
+		</Border>
+	</Grid>
+</Page>

@@ -1,0 +1,154 @@
+﻿<Page x:Class="MarathonSkills2016.Pages.BMICalculatorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="800"
+      Title="BMICalculatorPage">
+
+    <DockPanel Background="LightGray" LastChildFill="True">
+        <!-- Верхняя панель -->
+        <Border Height="80" Background="Green" DockPanel.Dock="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Width="120" Height="40" Margin="20,0,0,0"
+                        VerticalAlignment="Center" Background="Green"
+                        Click="GoBackButton_Click" Content="Назад"
+                        FontWeight="Bold" Foreground="Black"
+                        Style="{StaticResource RoundedButtonStyle}" />
+
+                <TextBlock Grid.Column="1" Margin="115,0,0,0"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                           FontSize="24" FontWeight="Bold" Foreground="White"
+                           Text="MARATHON SKILLS 2025" />
+            </Grid>
+        </Border>
+
+        <!-- Нижняя панель -->
+        <Border Height="60" Background="Green" DockPanel.Dock="Bottom">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="16" FontWeight="Bold" Foreground="Black"
+                       Text="18 дней 8 часов и 17 минут до старта марафона!" />
+        </Border>
+
+        <!-- Основное содержимое -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="40" HorizontalAlignment="Center" Width="400">
+                <!-- Заголовок -->
+                <Label Content="BMI калькулятор" HorizontalAlignment="Center" 
+                       FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                <!-- Описание -->
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,30">
+                    <Run Text="BMI обозначает индекс массы тела. Он используется, чтобы дать вам представление о том, является ли ваш вес избыточным или идеальным для вашего роста."/>
+                    <LineBreak/>
+                    <Run Text="Это полезно знать, потому что если ваш вес увеличивается или уменьшается за пределами идеального диапазона, у вас повышается риск заболеть."/>
+                </TextBlock>
+
+                <!-- Выбор пола -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,30">
+                    <Border x:Name="MaleBorder" Width="100" Height="100" Margin="0,0,20,0"
+                            BorderThickness="2" BorderBrush="Transparent" CornerRadius="5"
+                            Cursor="Hand" MouseLeftButtonDown="GenderSelected">
+                        <Image Source="/Resources/Gender/male-icon.png" Stretch="Uniform" Tag="Male"/>
+                    </Border>
+                    <Border x:Name="FemaleBorder" Width="100" Height="100"
+                            BorderThickness="2" BorderBrush="Transparent" CornerRadius="5"
+                            Cursor="Hand" MouseLeftButtonDown="GenderSelected">
+                        <Image Source="/Resources/Gender/female-icon.png" Stretch="Uniform" Tag="Female"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Поля ввода -->
+                <StackPanel Margin="0,0,0,30">
+                    <!-- Рост -->
+                    <TextBlock Text="Рост (см):" Margin="0,0,0,5"/>
+                    <TextBox x:Name="HeightTextBox" Height="30" Padding="5" 
+                             Text="170" TextAlignment="Right" Style="{StaticResource ModernTextBox}"/>
+
+                    <!-- Вес -->
+                    <TextBlock Text="Вес (кг):" Margin="0,10,0,5"/>
+                    <TextBox x:Name="WeightTextBox" Height="30" Padding="5" 
+                             Text="70" TextAlignment="Right" Style="{StaticResource ModernTextBox}"/>
+                </StackPanel>
+
+                <!-- Кнопки -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,30">
+                    <Button Content="Рассчитать" Width="120" Height="40" Background="Green"
+                            Foreground="White" FontWeight="Bold" Click="CalculateButton_Click"
+                            Style="{StaticResource RoundedButtonStyle}"/>
+                    <Button Content="Отмена" Width="120" Height="40" Background="Green"
+                            Foreground="Black" FontWeight="Bold" Margin="20,0,0,0"
+                            Click="CancelButton_Click" Style="{StaticResource RoundedButtonStyle}"/>
+                </StackPanel>
+
+                <!-- Результат -->
+                <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Padding="20">
+                    <StackPanel>
+                        <!-- Иконка результата -->
+                        <Image x:Name="BMIResultIcon" Width="80" Height="80" HorizontalAlignment="Center" 
+                               Margin="0,0,0,10" Stretch="Uniform"/>
+
+                        <!-- Значение BMI -->
+                        <TextBlock x:Name="BMITextBlock" Text="0.0" FontSize="24" FontWeight="Bold"
+                                   HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+                        <!-- Категория -->
+                        <TextBlock x:Name="BMICategoryText" Text="Категория" FontSize="16"
+                                   HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                        <!-- Шкала BMI -->
+                        <Grid Height="30" Margin="0,0,0,10">
+                            <Rectangle Fill="#E0E0E0" RadiusX="5" RadiusY="5"/>
+
+                            <!-- Зоны шкалы -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <!-- Недостаточный -->
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <!-- Здоровый -->
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <!-- Избыточный -->
+                                    <ColumnDefinition Width="1*"/>
+                                    <!-- Ожирение -->
+                                </Grid.ColumnDefinitions>
+
+                                <Rectangle Grid.Column="0" Fill="#8BC34A" RadiusX="5" RadiusY="5"/>
+                                <Rectangle Grid.Column="1" Fill="#4CAF50" RadiusX="0" RadiusY="0"/>
+                                <Rectangle Grid.Column="2" Fill="#FFC107" RadiusX="0" RadiusY="0"/>
+                                <Rectangle Grid.Column="3" Fill="#F44336" RadiusX="5" RadiusY="5"/>
+
+                                <!-- Подписи шкалы -->
+                                <StackPanel Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="18.5" Margin="10,0,0,0" VerticalAlignment="Bottom"/>
+                                    <TextBlock Text="18.5-24.9" Margin="40,0,0,0" VerticalAlignment="Bottom"/>
+                                    <TextBlock Text="25-29.9" Margin="40,0,0,0" VerticalAlignment="Bottom"/>
+                                    <TextBlock Text=">30" Margin="40,0,0,0" VerticalAlignment="Bottom"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Стрелка индикатора -->
+                            <Path x:Name="BMIArrow" Data="M0,0 L10,0 L5,10 Z" Fill="#241D70" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Top"
+                                  Margin="0,-10,0,0" Stretch="Fill" Width="20"/>
+                        </Grid>
+
+                        <!-- Легенда -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Недостаточный" Margin="0,0,10,0"/>
+                            <TextBlock Text="Здоровый" Margin="0,0,10,0"/>
+                            <TextBlock Text="Избыточный" Margin="0,0,10,0"/>
+                            <TextBlock Text="Ожирение"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Page>

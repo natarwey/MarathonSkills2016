@@ -1,0 +1,108 @@
+﻿<Page x:Class="MarathonSkills2016.Pages.RegistrationR"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkills2016.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      Title="RegistrationR">
+
+    <Grid Background="LightGray" Margin="0,0,0,-51">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Grid Background="Green" Grid.Row="0">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+				<Button Content="Назад"  FontFamily="Open Sans Light" Style="{StaticResource RoundedButtonStyle}" Background="Green" Click="GoBackButton_Click" Width="70" Height="30" Margin="0,0,30,0"/>
+				<TextBlock Text="MARATHON SKILLS 2016" FontFamily="Open Sans Semibold " FontSize="28" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+			</StackPanel>
+		</Grid>
+		<StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,58,0,0" Width="640" Height="440" Grid.RowSpan="2">
+			<Label Content="Регистрация бегуна" HorizontalAlignment="Center" FontFamily="Open Sans SemiBold" FontSize="24" Height="48"></Label>
+			<TextBlock Text="Пожалуйста, заполните всю информацию, чтобы зарегистрироваться в качестве бегуна" HorizontalAlignment="Center" Width="477" FontFamily="Open Sans Light" FontWeight="Light" TextWrapping="Wrap" TextAlignment="Center" FontSize="14"></TextBlock>
+			<StackPanel Orientation="Horizontal" Height="269">
+				<StackPanel Orientation="Vertical" Width="290">
+					<StackPanel Orientation="Horizontal">
+						<Label Content="Email:" Grid.Column="0" VerticalAlignment="Center" Height="30"/>
+						<TextBox x:Name="EmailTxt" Text="Enter your email address" FontSize="14" FontStyle="Italic" Background="White" Foreground="#FF878787" GotFocus="EmailTxt_GotFocus" LostFocus="EmailTxt_LostFocus" Width="240"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label  Content="Пароль:" Grid.Column="0" VerticalAlignment="Center" Height="30"/>
+						<Grid>
+							<PasswordBox x:Name="PassTxt" Margin="10,5,-221,3" Height="25" GotFocus="PassTxt_GotFocus" LostFocus="PassTxt_LostFocus"/>
+							<Label x:Name="PasEnterLabel" Content="Пароль" VerticalAlignment="Center" Height="30" FontSize="14" FontStyle="Italic" Background="Transparent" Foreground="#FF878787" IsHitTestVisible="False" Margin="10,0,-68,0" RenderTransformOrigin="0.106,0.533"/>
+						</Grid>
+
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label  Content="Повторите пароль:" VerticalAlignment="Top" Height="30" Margin="0" Grid.ColumnSpan="2" Grid.Row="2"/>
+						<Grid>
+							<PasswordBox x:Name="PassCheckTxt" Margin="10,5,170,3" Height="25" GotFocus="PassCheckTxt_GotFocus" LostFocus="PassCheckTxt_LostFocus"/>
+							<Label x:Name="PassCheckEnterLabel" Content="Повторите пароль" HorizontalAlignment="Left" VerticalAlignment="Center" Width="313" Height="30" FontSize="14" FontStyle="Italic" Background="Transparent" Foreground="#FF878787" IsHitTestVisible="False" Margin="10,0,0,0"/>
+						</Grid>
+
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="Имя:" Grid.Column="0" VerticalAlignment="Center" Height="30"/>
+						<TextBox x:Name="NameTxt" Text="Имя" FontSize="14" FontStyle="Italic" Background="White" Foreground="#FF878787" GotFocus="NameTxt_GotFocus" LostFocus="NameTxt_LostFocus" Width="240"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="Фамилия:" Grid.Column="0" VerticalAlignment="Center" Height="30"/>
+						<TextBox x:Name="SecondNameTxt" Text="Фамилия" FontSize="14" FontStyle="Italic" Background="White" Foreground="#FF878787" GotFocus="SecondNameTxt_GotFocus" LostFocus="SecondNameTxt_LostFocus" Width="240"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Height="26">
+						<Label Content="Пол:"/>
+						<ComboBox x:Name="CmbxGender" Width="134" Foreground="Green" SelectedIndex="0" GotFocus="CmbxGender_GotFocus">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding Gender1}"/>
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Orientation="Vertical" Width="310">
+					<Grid Height="132">
+						<Border x:Name="BorderBg"  BorderBrush="Green" BorderThickness="2" HorizontalAlignment="Right" Margin="5" Width="100" Height="120" Background="#FFCCCCCC">
+							<Image x:Name="ImageCharity" MaxHeight="200" Height="120" Margin="0,0,0,0">
+								<Image.Resources>
+									<Style TargetType="{x:Type Border}">
+										<Setter Property="CornerRadius" Value="10"/>
+									</Style>
+								</Image.Resources>
+							</Image>
+						</Border>
+
+					</Grid>
+					<Label Content="Фото файл:"/>
+					<StackPanel Orientation="Horizontal">
+						<TextBox x:Name="ImagePathTxt" Text="Photo_logo.jpg" FontSize="14" FontStyle="Italic" Background="White" Foreground="#FF878787" GotFocus="EmailTxt_GotFocus" LostFocus="EmailTxt_LostFocus" Height="30" Width="183"/>
+						<Button x:Name="BtnFile" Margin="20,0,0,0" Content="Просмотр..." FontFamily="Open Sans Light" Style="{StaticResource RoundedButtonStyle}" Background="Green" Height="36" Width="102" Click="BtnFile_Click"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="Дата рождения:"/>
+						<DatePicker x:Name="BirthDate" Height="29" Width="150" SelectedDateChanged="BirthDate_SelectedDateChanged" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="Страна:" Margin="0, 20, 5, 0"/>
+						<ComboBox x:Name="CmbxCountry" Width="141" SelectedIndex="77" FontStyle="Italic" Foreground="Green" GotFocus="CmbxCountry_GotFocus" Margin="0, 20, 5, 0">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding CountryName}"/>
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Width="232" Height="60">
+				<Button Content="Регистрация"  FontFamily="Open Sans Light" Style="{StaticResource RoundedButtonStyle}" Click="RegButton_Click" Width="100" Height="35" Margin="0,15,30,0" Background="Green"/>
+				<Button Content="Отмена"  FontFamily="Open Sans Light" Style="{StaticResource RoundedButtonStyle}" Click="CancelButton_Click" Width="100" Height="35" Margin="0,15,30,0" Background="Green"/>
+
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</Page>

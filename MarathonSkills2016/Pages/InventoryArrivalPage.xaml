@@ -1,0 +1,69 @@
+﻿<Page x:Class="MarathonSkills2016.Pages.InventoryArrivalPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkills2016.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="InventoryArrivalPage">
+
+	<Grid Background="LightGray">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<!-- Header -->
+		<Grid Background="Green" Grid.Row="0">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+				<Button Content="Назад" Style="{StaticResource RoundedButtonStyle}" 
+                        Background="Green" Click="GoBackButton_Click" Width="70" Height="30" Margin="0,0,30,0"/>
+				<TextBlock Text="MARATHON SKILLS 2025" FontSize="28" 
+                           FontWeight="Bold" Foreground="White"/>
+			</StackPanel>
+		</Grid>
+
+		<!-- Main Content -->
+		<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+			<StackPanel Margin="40,20,40,20" HorizontalAlignment="Center" Width="600">
+				<!-- Title -->
+				<Label Content="Поступление инвентаря" HorizontalAlignment="Center" 
+                       FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+
+				<!-- Inventory Items Table -->
+				<DataGrid x:Name="InventoryItemsGrid" AutoGenerateColumns="False" 
+                          HeadersVisibility="Column" CanUserAddRows="False" 
+                          CanUserDeleteRows="False" IsReadOnly="False"
+                          Margin="0,0,0,20">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Наименование" Binding="{Binding ItemName}" Width="*" IsReadOnly="True"/>
+						<DataGridTextColumn Header="Текущий остаток" Binding="{Binding CurrentStock}" Width="*" IsReadOnly="True"/>
+						<DataGridTemplateColumn Header="Поступление" Width="*">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<TextBox Text="{Binding ArrivalQuantity, UpdateSourceTrigger=PropertyChanged}" 
+                                             HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                             PreviewTextInput="TextBox_PreviewTextInput"/>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+					</DataGrid.Columns>
+				</DataGrid>
+
+				<!-- Save Button -->
+				<Button Content="Сохранить" Width="120" Height="35" HorizontalAlignment="Center"
+                        Background="Green" Foreground="White" FontWeight="Bold"
+                        Click="SaveButton_Click" Style="{StaticResource RoundedButtonStyle}"/>
+			</StackPanel>
+		</ScrollViewer>
+
+		<!-- Footer -->
+		<Border Grid.Row="2" Height="60" Background="Green">
+			<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="16" FontWeight="Bold" Foreground="Black"
+                       Text="18 дней 8 часов и 17 минут до старта марафона!" />
+		</Border>
+	</Grid>
+</Page>

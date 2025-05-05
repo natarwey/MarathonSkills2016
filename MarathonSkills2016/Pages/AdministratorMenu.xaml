@@ -1,0 +1,112 @@
+﻿<Page x:Class="MarathonSkills2016.Pages.AdministratorMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkills2016.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="AdministratorMenu">
+
+    <DockPanel Background="LightGray" LastChildFill="True">
+		<!--  Верхняя панель  -->
+		<Border
+            Height="80"
+            Background="Green"
+            DockPanel.Dock="Top">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+
+				<!--  Кнопка Назад  -->
+				<Button
+                    Grid.Column="0"
+                    Width="120"
+                    Height="40"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    Background="Green"
+                    Click="GoBackButton_Click"
+                    Content="Назад"
+                    FontWeight="Bold"
+                    Foreground="Black" />
+
+				<!--  Заголовок  -->
+				<TextBlock
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="24"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="MARATHON SKILLS 2025" />
+
+				<!--  Кнопка Выйти  -->
+				<Button
+                    Grid.Column="2"
+                    Width="120"
+                    Height="40"
+                    Margin="0,0,20,0"
+                    VerticalAlignment="Center"
+                    Background="Green"
+                    Click="LogoutButton_Click"
+                    Content="Выйти"
+                    FontWeight="Bold"
+                    Foreground="Black" />
+			</Grid>
+		</Border>
+
+		<!--  Основное содержимое  -->
+		<ScrollViewer Padding="25">
+			<StackPanel HorizontalAlignment="Center">
+				<!--  Заголовок меню  -->
+				<TextBlock
+                    Margin="0,20,0,40"
+                    HorizontalAlignment="Center"
+                    FontSize="28"
+                    FontWeight="Bold"
+                    Foreground="#241D70"
+                    Text="Меню администратора" />
+
+				<!--  Кнопки меню  -->
+				<UniformGrid
+                    Width="700"
+                    HorizontalAlignment="Center"
+                    Columns="2">
+					<!--  Пользователи  -->
+					<Button
+                        Margin="15"
+                        Click="UsersButton_Click"
+                        Content="Пользователи"
+                        Style="{StaticResource AdminMenuButtonStyle}" />
+
+					<!--  Волонтеры  -->
+					<Button
+                        Margin="15"
+                        Click="VolonteursButton_Click"
+                        Content="Волонтеры"
+                        Style="{StaticResource AdminMenuButtonStyle}" />
+
+					<!--  Благотворительные организации  -->
+					<Button
+                        Margin="15"
+                        Click="OrgsButton_Click"
+                        Content="Благотворительные организации"
+                        Style="{StaticResource AdminMenuButtonStyle}" />
+
+					<!--  Инвентарь  -->
+					<Button
+                        Margin="15"
+                        Click="InventoryButton_Click"
+                        Content="Инвентарь"
+                        Style="{StaticResource AdminMenuButtonStyle}" />
+
+					<!--  Добавьте дополнительные кнопки по необходимости  -->
+				</UniformGrid>
+			</StackPanel>
+		</ScrollViewer>
+	</DockPanel>
+</Page>
