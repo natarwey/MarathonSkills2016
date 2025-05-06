@@ -91,7 +91,7 @@
 
 
         <!--  Основное содержимое  -->
-        <StackPanel Grid.Row="1" Margin="30,0,10,0">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
             <!--  Заголовок страницы  -->
             <TextBlock
                 Margin="0,0,0,30"
